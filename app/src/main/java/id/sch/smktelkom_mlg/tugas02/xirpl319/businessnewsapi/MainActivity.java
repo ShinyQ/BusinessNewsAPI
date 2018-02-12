@@ -72,11 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 ModelBerita modelBerita = new ModelBerita(
                         jsonObject.getString("author"),
                         jsonObject.getString("title"),
+                        jsonObject.getString("urlToImage"),
                         jsonObject.getString("publishedAt")
                 );
 
                 ModelBeritaList.add(modelBerita);
-                adapter = new AdapterBerita(ModelBeritaList);
+                adapter = new AdapterBerita(ModelBeritaList, this);
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 recyclerView.setLayoutManager(linearLayoutManager);

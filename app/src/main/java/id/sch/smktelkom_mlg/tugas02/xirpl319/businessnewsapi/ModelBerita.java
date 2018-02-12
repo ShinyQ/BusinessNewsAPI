@@ -10,11 +10,13 @@ public class ModelBerita {
     private String urlToImage;
     private String publishedAt;
 
-    public ModelBerita(String author, String title, String publishedAt) {
+    public ModelBerita(String author, String title, String urlToImage, String publishedAt) {
         this.author = author;
         this.title = title;
+        this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
     }
+
 
     public String getAuthor() {
         return author;

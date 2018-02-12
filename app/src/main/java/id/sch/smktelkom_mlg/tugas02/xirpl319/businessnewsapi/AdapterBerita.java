@@ -1,10 +1,14 @@
 package id.sch.smktelkom_mlg.tugas02.xirpl319.businessnewsapi;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -14,9 +18,11 @@ import java.util.List;
 
 public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.Holder>{
     List<ModelBerita> ModelBeritaList;
+    Context context;
 
-    public AdapterBerita(List<ModelBerita> Mb){
+    public AdapterBerita(List<ModelBerita> Mb, Context ctx){
         ModelBeritaList = Mb;
+        context = ctx;
     }
 
     @Override
@@ -32,7 +38,11 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.Holder>{
         holder.tvtittle.setText(MB.getTitle());
         holder.tvPublish.setText(MB.getPublishedAt());
         holder.tvAuthor.setText(MB.getAuthor());
-
+        Glide.with(context)
+                .load(MB.getUrlToImage())
+                .fitCenter()
+                .crossFade()
+                .into(holder.imageBerita);
     }
 
     @Override
@@ -45,11 +55,13 @@ public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.Holder>{
         TextView tvtittle;
         TextView tvAuthor;
         TextView tvPublish;
+        ImageView imageBerita;
         public Holder(View itemView) {
             super(itemView);
             tvtittle = itemView.findViewById(R.id.tvJudul);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvPublish = itemView.findViewById(R.id.tvDate);
+            imageBerita = itemView.findViewById(R.id.img_item_foto);
         }
     }
 }
