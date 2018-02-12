@@ -15,6 +15,10 @@ import java.util.List;
 public class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.Holder>{
     List<ModelBerita> ModelBeritaList;
 
+    public AdapterBerita(List<ModelBerita> Mb){
+        ModelBeritaList = Mb;
+    }
+
     @Override
     public AdapterBerita.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listberita, parent, false);
