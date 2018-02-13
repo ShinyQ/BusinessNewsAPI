@@ -32,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Business News");
         recyclerView = findViewById(R.id.rv_berita);
         getDataBerita();
     }
 
-    public void getDataBerita(){
+    public void getDataBerita() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 getJSONResponse(response);
             }
         }, new Response.ErrorListener() {
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("Volley Error", toString());
                 NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null){
+                if (networkResponse != null) {
                     Log.e("Status Code", String.valueOf(networkResponse.statusCode));
                 }
             }
@@ -62,18 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void getJSONResponse(String request){
+    public void getJSONResponse(String request) {
         try {
             JSONObject object = new JSONObject(request);
             JSONArray jsonArray = object.getJSONArray("articles");
-            for (int y=0; y<jsonArray.length();y++){
+            for (int y = 0; y < jsonArray.length(); y++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(y);
 
                 ModelBerita modelBerita = new ModelBerita(
                         jsonObject.getString("author"),
                         jsonObject.getString("title"),
                         jsonObject.getString("urlToImage"),
-                        jsonObject.getString("publishedAt")
+                        jsonObject.getString("publishedAt"),
+                        jsonObject.getString("description"),
+                        jsonObject.getString("url")
                 );
 
                 ModelBeritaList.add(modelBerita);
@@ -84,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
 
             }
-        }
-
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

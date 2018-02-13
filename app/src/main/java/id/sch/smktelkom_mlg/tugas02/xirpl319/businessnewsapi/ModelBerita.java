@@ -9,12 +9,16 @@ public class ModelBerita {
     private String title;
     private String urlToImage;
     private String publishedAt;
+    private String description;
+    private String url;
 
-    public ModelBerita(String author, String title, String urlToImage, String publishedAt) {
+    public ModelBerita(String author, String title, String urlToImage, String publishedAt, String description, String url) {
         this.author = author;
         this.title = title;
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
+        this.description = description;
+        this.url = url;
     }
 
 
@@ -48,5 +52,21 @@ public class ModelBerita {
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
