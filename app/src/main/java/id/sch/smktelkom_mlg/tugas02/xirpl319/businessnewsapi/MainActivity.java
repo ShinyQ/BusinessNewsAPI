@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 getJSONResponse(response);
             }
         }, new Response.ErrorListener() {
